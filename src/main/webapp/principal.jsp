@@ -15,5 +15,15 @@
     <body>
         <h1>Bienvenido <c:out value="${nom}"/></h1>
         <h1> Pesas <c:out value="${peso}"/>  </h1>
+        <form method="get" enctype="multipart/form-data" action="adelgazar">
+            <div> 
+                <p>
+                    Ejercicio: <input type="text" name="w">
+                </p>
+            </div>
+            <div> 
+                <input type="submit" name="Aceptar" value="aceptar">
+            </div>
+        </form>
     </body>
 </html>

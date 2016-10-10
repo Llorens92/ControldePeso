@@ -9,27 +9,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="estilos.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
 
         <form method="get" enctype="multipart/form-data" action="registro">
             <br><br><br> 
-            <div id="div1">
-                <div> 
-                    <p>
-                        Nombre: <input type="text" name="nom" maxlength="30">
-                    </p>
-                </div>
+            <div> 
+                <p>
+                    Nombre: <input type="text" name="nom" maxlength="30">
+                </p>
             </div>
-            <div id="div2">
-                <div> 
-                    <p>
-                        Peso: <input type="text" name="peso">
-                    </p>
-                </div> 
-            </div>            
-            <div id="div3">
+            <div> 
+                <p>
+                    Peso: <input type="text" name="peso">
+                </p>
+            </div>       
+            <div>
                 <input type="submit" name="Aceptar" value="aceptar">
             </div>
         </form>

@@ -7,6 +7,8 @@ package dam.controldepeso;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +33,30 @@ public class adelgazar extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+        String kilos = (String) request.getSession().getAttribute("peso");
+        LocalDateTime ultimavez = (LocalDateTime) request.getSession().getAttribute("fecha");
+        if (ultimavez == null) {
+            ultimavez = LocalDateTime.now();
+        }
+        LocalDateTime ahora = LocalDateTime.now();
+        String w = request.getParameter("w");
+        if (w != null) {
+            try {
+                int iKilos = Integer.parseInt(kilos);
+                iKilos -= (Integer.parseInt(w) / 30);
+                String nombre = (String) request.getSession().getAttribute("nombre");
+                request.getSession().setAttribute("peso", iKilos + "");
+                request.getSession().setAttribute("fecha", ahora);
+                Duration segundos = Duration.between(ultimavez, ahora);
+                if((int)segundos.getSeconds()<5)
+                request.setAttribute("message", segundos.getSeconds() + "  " + nombre + " pesa Kilos " + iKilos);
+                int i = 0;
+                request.getRequestDispatcher("/principal.jsp").forward(request, response);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        request.getRequestDispatcher("/errores.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
